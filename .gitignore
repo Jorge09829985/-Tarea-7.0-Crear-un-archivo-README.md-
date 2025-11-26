@@ -1,0 +1,52 @@
+# --- PYTHON ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Entornos virtuales
+venv/
+.env/
+.env.bak/
+.venv/
+
+# Archivos de instalación / build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Configuración de VSCode
+.vscode/
+*.code-workspace
+
+# Archivos temporales
+*.log
+*.tmp
+*.cache
+.DS_Store
+
+# Carpetas creadas por coverage o pytest
+.coverage
+htmlcov/
+.cache/
+pytest_cache/
+
+# Archivos de testing
+*.pytest_cache/
+
+# Requerimientos creados automáticamente
+pip-wheel-metadata/
+
+# --- GITHUB ACTIONS ---
+# (No ignores workflows)
+# .github/workflows/*
+
+# --- ONEDRIVE basura ---
+~$*
+Thumbs.db
+desktop.ini
+
+# --- WINDOWS ---
+ehthumbs.db
