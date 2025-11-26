@@ -16,25 +16,37 @@ jobs:
     name: Ejecutar Pruebas
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+
+      - run: pip install --upgrade pip setuptools wheel
       - run: pip install -r requirements.txt
-      - run: python -m unittest discover -s tests -v
+
+      - name: Ejecutar tests
+        run: python -m unittest discover -s tests -v
 
   build:
     name: Construir Package
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+
+      - run: pip install --upgrade pip setuptools wheel build
       - run: pip install -r requirements.txt
-      - run: python -m build
-      - uses: actions/upload-artifact@v3
+
+      - name: Ejecutar build
+        run: python -m build
+
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
         with:
           name: package
           path: dist/
@@ -44,6 +56,7 @@ jobs:
     needs: [test, build]
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Mostrar resultados
+        run: |
           echo "Tests: ${{ needs.test.result }}"
           echo "Build: ${{ needs.build.result }}"
